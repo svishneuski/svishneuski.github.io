@@ -1,4 +1,7 @@
 'use strict';
+/**
+ * Ждем загрузки всех ресурсов
+ */
 window.onload = () => {
   /**
    * Размер канвас - ширина
@@ -238,7 +241,7 @@ window.onload = () => {
         collision(this, coins[i]);
         let isColl = collision(this, coins[i]);
         if (isColl === true) {
-          window.navigator.vibrate(1000);
+          window.navigator.vibrate(300);
           this.coinCounter += 1;
           document.querySelector('#score').innerHTML = 'Score: ' + this.coinCounter;
         }
@@ -296,6 +299,7 @@ window.onload = () => {
       this.enemyCollision();
 
       if (this.die === true) {
+        window.navigator.vibrate(1000);
         endGame();
       }
     }
@@ -881,6 +885,12 @@ window.onload = () => {
     }
   };
 
+  /**
+   * Функция вызываемая при получении ошибок при выполнении AJAX запроса
+   * @param jqXHR
+   * @param StatusStr {string}
+   * @param ErrorStr {string}
+   */
   let errorHandler = (jqXHR, StatusStr, ErrorStr) => {
     console.log(StatusStr + ' ' + ErrorStr);
   };
